@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.2 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="25.0.2">
   <diagram name="as-is" id="-FQbQIRzEgXYEJ3rUFKh">
-    <mxGraphModel dx="3275" dy="2723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2357" dy="2140" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -348,8 +348,8 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="BUEQsuF9WBLL5mmlMrIg-78" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;ПОЯСНЕНИЯ&lt;/h1&gt;&lt;p&gt;Шардирование не требуется, так как объем данных не большой - 50гб, однако требуется репликация данных между ЦОД, чтобы обеспечить высокую надежность&lt;/p&gt;&lt;p&gt;Также предлагается использовать GSLB для того чтобы выяснить какой ЦОД ближе находится к клиенту.&lt;/p&gt;&lt;p&gt;Кластеры кубернетис независимые между ЦОД, чтобы также повысить надежность.&lt;/p&gt;&lt;p&gt;В рамках одного кластера будем использовать HPA, для этого добавим Prometeus для сборки данных и сервис с метриками, который обеспечит автоматизацию масштабирования через HPA&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-220" y="150" width="360" height="270" as="geometry" />
+        <mxCell id="BUEQsuF9WBLL5mmlMrIg-78" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;ПОЯСНЕНИЯ&lt;/h1&gt;&lt;p&gt;1 Масштабирование и отказоустойчивость&lt;/p&gt;&lt;p&gt;Лучше использовать горизонтальное масштабирование. Для этого нужно использовать несколько зон безопасности для обеспечения избыточной надежности. Внутри каждой зоны безопасности будет свой кластер кубернетис, который может масштабироваться с помощью HPA. Для этого добавим Prometeus и Сервис с метриками для отслеживания метрик по которым проводить масштабирование&lt;/p&gt;&lt;p&gt;2 Зоны безопасности&lt;/p&gt;&lt;p&gt;a) Кластеры кубернетис независимые между ЦОД, чтобы также повысить надежность&lt;br&gt;&lt;/p&gt;&lt;p&gt;b)&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;Также предлагается использовать GSLB для того чтобы выяснить какой ЦОД ближе находится к клиенту. Последующие запросы будут идти напрямую в выбранный ЦОД минуя GSLB. GSLB будет проводить health check каждого из кластеров&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;c) Failover стратегия - Active / Active так как требуется высокая степень надежности&lt;/span&gt;&lt;/p&gt;&lt;p&gt;d) репликация и бэкапы каждые 15 минут, использовать Patroni&lt;/p&gt;&lt;p&gt;3 Шардирование БД&lt;/p&gt;&lt;p&gt;Шардирование не требуется, так как объем данных не большой - 50гб, также 250 RPS при правильной настройке не большая нагрузка, также шардирование излишне повысит сложность&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="-150" width="360" height="520" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
